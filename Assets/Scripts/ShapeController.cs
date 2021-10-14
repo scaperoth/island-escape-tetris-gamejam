@@ -97,6 +97,12 @@ public class ShapeController : MonoBehaviour
         return true;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Trigger TurnOver");
+        _freeze = true;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("TurnOver");
