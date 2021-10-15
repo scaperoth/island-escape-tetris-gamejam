@@ -2,8 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShapeController : MonoBehaviour
+public class Tetromino : MonoBehaviour
 {
+    [SerializeField]
+    private bool _isControlled = false;
+    public bool IsControlled
+    {
+        get
+        {
+            return _isControlled;
+        }
+        set
+        {
+            _isControlled = value;
+        }
+    }
+
+    [SerializeField]
+    private TetrominoPiece[] _tetrominoPieces = new TetrominoPiece[] { };
 
     [Range(0.1f, 1f)]
     private float _moveStep = .5f;
@@ -18,10 +34,6 @@ public class ShapeController : MonoBehaviour
     private Vector3 _debugPosition = Vector3.zero;
     private Vector3 _debugBox = Vector3.zero;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
     void OnDrawGizmos()
     {
         Gizmos.color = new Color(1f, 0, 0, .5f); ;
@@ -36,6 +48,11 @@ public class ShapeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!_isControlled)
+        {
+            return;
+        }
+
         HandleRotation();
 
         if (_freeze)
@@ -54,7 +71,6 @@ public class ShapeController : MonoBehaviour
             return;
         }
 
-        Debug.Log($"CURRENT TIME: {_lastMoveTime}, {_automaticMoveDelay}, {Time.time}, {_lastMoveTime + _automaticMoveDelay < Time.time}");
         if (_lastAutomaticMoveTime + _automaticMoveDelay < Time.time)
         {
             intHoriz = 1;
@@ -90,7 +106,7 @@ public class ShapeController : MonoBehaviour
         _debugPosition = positionToCheckForSafe + new Vector3(_moveStep, 0, 0);
         _debugBox = Vector3.one * .1f;
         Collider[] hitColliders = Physics.OverlapBox(_debugPosition, _debugBox);
-        foreach(Collider hit in hitColliders)
+        foreach (Collider hit in hitColliders)
         {
             return false;
         }
