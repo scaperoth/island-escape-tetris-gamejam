@@ -401,6 +401,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ElbowShape
       objectReference: {fileID: 0}
+    - target: {fileID: 6755263262077388665, guid: dccf579e4f1a3e148a1e0d1b9232a292, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8151148067845495676, guid: dccf579e4f1a3e148a1e0d1b9232a292, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -733,10 +737,8 @@ MonoBehaviour:
   boost: 3.5
   positionLerpTime: 0.2
   mouseSensitivityCurve:
-    serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
-      time: 0
+    - time: 0
       value: 0.5
       inSlope: 0
       outSlope: 5
@@ -744,8 +746,7 @@ MonoBehaviour:
       weightedMode: 0
       inWeight: 0
       outWeight: 0
-    - serializedVersion: 3
-      time: 1
+    - time: 1
       value: 2.5
       inSlope: 0
       outSlope: 0
@@ -808,8 +809,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -3.5, y: 7, z: 10}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -2.6881754, y: 7.730852, z: 10.007263}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -896,6 +897,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ElbowShapeFlip
       objectReference: {fileID: 0}
+    - target: {fileID: 6755263262077388665, guid: c4bd301ee6bcdff40ab401038e282266, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8151148067845495676, guid: c4bd301ee6bcdff40ab401038e282266, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -910,7 +915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8151148067845495676, guid: c4bd301ee6bcdff40ab401038e282266, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -5.5
       objectReference: {fileID: 0}
     - target: {fileID: 8151148067845495676, guid: c4bd301ee6bcdff40ab401038e282266, type: 3}
       propertyPath: m_LocalRotation.w
