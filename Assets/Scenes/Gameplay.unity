@@ -1124,6 +1124,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1762758494}
   - component: {fileID: 1762758495}
+  - component: {fileID: 1762758497}
+  - component: {fileID: 1762758496}
   m_Layer: 6
   m_Name: SpawnArea
   m_TagString: Untagged
@@ -1175,6 +1177,32 @@ MonoBehaviour:
   - {fileID: -7578161186453466322, guid: 0a7bde68456e0244aadf491699fb6770, type: 3}
   _spawnArea: {x: 2, y: 0, z: 11}
   _gizmosColor: {r: 1, g: 0, b: 0.18196487, a: 0.2}
+--- !u!65 &1762758496
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762758493}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 5}
+--- !u!65 &1762758497
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762758493}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: -6}
 --- !u!4 &1825858775 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6e5fe16f72f050147a5e1e469cf2de4d, type: 3}

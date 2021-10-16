@@ -17,18 +17,14 @@ public class TetrominoMovementControl : MonoBehaviour
     // player movment
     [Range(0.1f, 1f)]
     private float _moveStep = 1f;
-    private float _moveDelay = .5f;
     private float _lastMoveTime = 0f;
-    private bool _movedThisFrame = false;
+    private bool _checkVerticalAllowanceAfterMove = false;
+    private bool _checkPositionAfterMove = false;
 
     // automatic movement
-    private float _automaticMoveDelay = 1f; // must be greater than move delay
-    private float _lastAutomaticMoveTime = 0;
-    private bool _moveAutomatically = true;
+    private float _moveDelay = 1f;
 
     // rotation
-    private float _rotationDelay = .2f;
-    private float _lastRotationTime = 0f;
     private bool _rotationEnabled = true;
 
     private bool[] _blockedMovement = new bool[]
@@ -64,7 +60,12 @@ public class TetrominoMovementControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _movedThisFrame = false;
+        // don't allow movement until after checks are done
+        if (_checkPositionAfterMove || _checkVerticalAllowanceAfterMove)
+        {
+            return;
+        }
+
         if (_rotationEnabled)
         {
             HandleRotation();
@@ -87,7 +88,7 @@ public class TetrominoMovementControl : MonoBehaviour
             intVert = 0;
         }
 
-        float adjustedMoveDelay = horizontal > 0 ? _automaticMoveDelay / 5f : _automaticMoveDelay;
+        float adjustedMoveDelay = horizontal > 0 ? _moveDelay / 5f : _moveDelay;
 
         Move(0, intVert);
         if (_lastMoveTime + adjustedMoveDelay < Time.time)
@@ -104,30 +105,36 @@ public class TetrominoMovementControl : MonoBehaviour
         Vector3 newPosition = transform.position + movement;
 
         transform.position = newPosition;
-        _movedThisFrame = true;
+
+        _checkPositionAfterMove = horiz > 0;
+        _checkVerticalAllowanceAfterMove = vert != 0;
     }
 
     private void FixedUpdate()
     {
-        if (!_movedThisFrame)
+        if (_checkVerticalAllowanceAfterMove)
         {
-            return;
+            CheckAllowedMovement();
+            _checkVerticalAllowanceAfterMove = false;
         }
 
-        CheckAllowedMovement();
-        bool isStopped = CheckIfStopped();
-        if (isStopped)
+        if (_checkPositionAfterMove)
         {
-            bool gameOver = CheckIfGameOver();
+            bool isStopped = CheckIfStopped();
+            if (isStopped)
+            {
+                bool gameOver = CheckIfGameOver();
 
-            if (gameOver)
-            {
-                OnGameOver.Invoke();
+                if (gameOver)
+                {
+                    OnGameOver.Invoke();
+                }
+                else
+                {
+                    OnTetrominoStuck.Invoke();
+                }
             }
-            else
-            {
-                OnTetrominoStuck.Invoke();
-            }
+            _checkPositionAfterMove = false;
         }
     }
 
@@ -142,14 +149,10 @@ public class TetrominoMovementControl : MonoBehaviour
 
     void HandleRotation()
     {
-        if (Input.GetButton("Rotate"))
+        if (Input.GetButtonDown("Rotate"))
         {
-            if (_lastRotationTime + _rotationDelay < Time.time)
-            {
-                Vector3 newRotation = new Vector3(0, 90 % 360, 0) + transform.rotation.eulerAngles;
-                transform.rotation = Quaternion.Euler(newRotation);
-                _lastRotationTime = Time.time;
-            }
+            Vector3 newRotation = new Vector3(0, 90 % 360, 0) + transform.rotation.eulerAngles;
+            transform.rotation = Quaternion.Euler(newRotation);
         }
     }
 
