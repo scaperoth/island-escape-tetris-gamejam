@@ -73,6 +73,8 @@ public class Tetromino : MonoBehaviour
 
     private void GameOver()
     {
+        _tetrominoMovementControl.OnTetrominoStuck.RemoveListener(TetrominoStuck);
+        _tetrominoMovementControl.OnGameOver.RemoveListener(GameOver);
         OnGameOver.Invoke(this);
     }
 
@@ -82,16 +84,16 @@ public class Tetromino : MonoBehaviour
         Offset offset;
         switch (gameObject.name)
         {
-            case "LongShape":
-                offset.position = new Vector3(.5f, 0f, .25f);
+            case "LongShape(Clone)":
+                offset.position = new Vector3(1f, 0f, .5f);
                 offset.rotation = new Vector3(0f, -90, 0f);
                 break;
-            case "SquareShape":
-                offset.position = new Vector3(0f, 0f, .25f);
+            case "SquareShape(Clone)":
+                offset.position = new Vector3(0f, 0f, .5f);
                 offset.rotation = new Vector3(0f, 0, 0f);
                 break;
             default:
-                offset.position = new Vector3(.25f, 0f, 0f);
+                offset.position = new Vector3(.5f, 0f, 0f);
                 offset.rotation = new Vector3(0f, -90, 0f);
                 break;
         }

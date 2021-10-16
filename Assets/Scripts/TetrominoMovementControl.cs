@@ -17,8 +17,9 @@ public class TetrominoMovementControl : MonoBehaviour
     // player movment
     [Range(0.1f, 1f)]
     private float _moveStep = 1f;
-    private float _moveDelay = .2f;
+    private float _moveDelay = .5f;
     private float _lastMoveTime = 0f;
+    private bool _movedThisFrame = false;
 
     // automatic movement
     private float _automaticMoveDelay = 1f; // must be greater than move delay
@@ -63,7 +64,7 @@ public class TetrominoMovementControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        _movedThisFrame = false;
         if (_rotationEnabled)
         {
             HandleRotation();
@@ -72,8 +73,8 @@ public class TetrominoMovementControl : MonoBehaviour
         // get input and normalize. horiztontal can only be 0 or 1
         // and vertical can be -1, 0, 1
         float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-        int intHoriz = horizontal > 0 ? Mathf.CeilToInt(horizontal) : 0;
+        bool verticalPressed = Input.GetButtonDown("Vertical");
+        float vertical = verticalPressed ? Input.GetAxis("Vertical") : 0;
         int intVert = vertical > 0 ? Mathf.CeilToInt(vertical) : Mathf.FloorToInt(vertical);
 
         // stop movement if blocked
@@ -86,17 +87,13 @@ public class TetrominoMovementControl : MonoBehaviour
             intVert = 0;
         }
 
-        // check to see if it's time to push the player forward
-        // and automatically move them if you do 
-        if (_moveAutomatically && _lastAutomaticMoveTime + _automaticMoveDelay < Time.time)
+        float adjustedMoveDelay = horizontal > 0 ? _automaticMoveDelay / 5f : _automaticMoveDelay;
+
+        Move(0, intVert);
+        if (_lastMoveTime + adjustedMoveDelay < Time.time)
         {
-            intHoriz = _blockedMovement[0] ? 0 : 1;
-            Move(intHoriz, intVert);
-            _lastAutomaticMoveTime = Time.time;
-        }
-        else if (_lastMoveTime + _moveDelay < Time.time)
-        {
-            Move(intHoriz, intVert);
+            Move(1, 0);
+            _lastMoveTime = Time.time;
         }
     }
 
@@ -107,12 +104,16 @@ public class TetrominoMovementControl : MonoBehaviour
         Vector3 newPosition = transform.position + movement;
 
         transform.position = newPosition;
-
-        _lastMoveTime = Time.time;
+        _movedThisFrame = true;
     }
 
     private void FixedUpdate()
     {
+        if (!_movedThisFrame)
+        {
+            return;
+        }
+
         CheckAllowedMovement();
         bool isStopped = CheckIfStopped();
         if (isStopped)

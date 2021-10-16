@@ -37,14 +37,15 @@ public class TetrominoSpawner : MonoBehaviour
 
         // Spawn object with random 2D rotation.
         PooledObject instance = _objectPool.Spawn(pooledObject, transform.position, Quaternion.Euler(0f, -90f, 0f));
+        
         // We can avoid GetComponent<>() for a frequently accessed component, which is nice.
         Tetromino tetromino = instance.As<Tetromino>();
         Offset _offsets = tetromino.GetSpawnOffset();
-        tetromino.transform.localPosition += _offsets.position;
+        tetromino.transform.localPosition = _offsets.position;
         tetromino.transform.localRotation = Quaternion.Euler(_offsets.rotation); 
 
         tetromino.OnTetrominoStopped.AddListener(HandleTetrominoStopped);
-        tetromino.OnTetrominoStopped.AddListener(HandleGameOver);
+        tetromino.OnGameOver.AddListener(HandleGameOver);
 
         tetromino.EnableControl();
     }
