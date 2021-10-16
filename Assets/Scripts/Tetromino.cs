@@ -1,121 +1,66 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Tetromino : MonoBehaviour
 {
-    [SerializeField]
-    private bool _isControlled = false;
-    public bool IsControlled
-    {
-        get
-        {
-            return _isControlled;
-        }
-        set
-        {
-            _isControlled = value;
-        }
-    }
 
     [SerializeField]
     private TetrominoPiece[] _tetrominoPieces = new TetrominoPiece[] { };
 
-    [Range(0.1f, 1f)]
-    private float _moveStep = .5f;
-    private float _moveDelay = .2f;
-    private float _automaticMoveDelay = 1f;
-    private float _lastAutomaticMoveTime = 0;
-    private float _rotationDelay = .2f;
-    private float _lastMoveTime = 0f;
-    private float _lastRotationTime = 0f;
-    private bool _freeze = false;
+    private TetrominoMovementControl _tetrominoMovementControl;
+    private TetrominoAutoMovement _tetrominoAutoMovement;
 
-    private Vector3 _debugPosition = Vector3.zero;
-    private Vector3 _debugBox = Vector3.zero;
 
-    void OnDrawGizmos()
+    public TetrominoPiece[] Pieces
     {
-        Gizmos.color = new Color(1f, 0, 0, .5f); ;
-        Gizmos.DrawCube(_debugPosition, _debugBox);
+        get
+        {
+            return _tetrominoPieces;
+        }
+    }
+
+    private void Awake()
+    {
+        _tetrominoMovementControl = GetComponent<TetrominoMovementControl>();
+        _tetrominoAutoMovement = GetComponent<TetrominoAutoMovement>();
     }
 
     private void OnEnable()
     {
-        _freeze = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (!_isControlled)
+        if (_tetrominoMovementControl != null)
         {
-            return;
-        }
-
-        HandleRotation();
-
-        if (_freeze)
-        {
-            enabled = false;
-        }
-
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-
-        int intHoriz = horizontal > 0 ? Mathf.CeilToInt(horizontal) : 0;
-        int intVert = vertical > 0 ? Mathf.CeilToInt(vertical) : Mathf.FloorToInt(vertical);
-
-        if (_lastMoveTime + _moveDelay > Time.time)
-        {
-            return;
-        }
-
-        if (_lastAutomaticMoveTime + _automaticMoveDelay < Time.time)
-        {
-            intHoriz = 1;
-            _lastAutomaticMoveTime = Time.time;
-        }
-
-
-        Vector3 movement = new Vector3(intHoriz * _moveStep, 0, intVert * _moveStep);
-
-        Vector3 newPosition = transform.position + movement;
-
-
-        transform.position = newPosition;
-
-        _lastMoveTime = Time.time;
-    }
-
-    void HandleRotation()
-    {
-        if (Input.GetButton("Rotate"))
-        {
-            if (_lastRotationTime + _rotationDelay < Time.time)
-            {
-                Vector3 newRotation = new Vector3(0, 90 % 360, 0) + transform.rotation.eulerAngles;
-                transform.rotation = Quaternion.Euler(newRotation);
-                _lastRotationTime = Time.time;
-            }
+            _tetrominoMovementControl.OnTetrominoStuck.AddListener(DisableControl);
         }
     }
 
-    bool CheckSafePosition(Vector3 positionToCheckForSafe)
+    private void OnDisable()
     {
-        _debugPosition = positionToCheckForSafe + new Vector3(_moveStep, 0, 0);
-        _debugBox = Vector3.one * .1f;
-        Collider[] hitColliders = Physics.OverlapBox(_debugPosition, _debugBox);
-        foreach (Collider hit in hitColliders)
+        if (_tetrominoMovementControl != null)
         {
-            return false;
+            _tetrominoMovementControl.OnTetrominoStuck.RemoveListener(DisableControl);
         }
-
-        return true;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void EnableControl()
     {
-        _freeze = true;
+        if (_tetrominoMovementControl != null)
+        {
+            _tetrominoMovementControl.enabled = true;
+        }
+        if (_tetrominoAutoMovement != null)
+        {
+            _tetrominoAutoMovement.enabled = true;
+        }
+    }
+
+    public void DisableControl()
+    {
+        if (_tetrominoMovementControl != null)
+        {
+            _tetrominoMovementControl.enabled = false;
+        }
+        if (_tetrominoAutoMovement != null)
+        {
+            _tetrominoAutoMovement.enabled = false;
+        }
     }
 }

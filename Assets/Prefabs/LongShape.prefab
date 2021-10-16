@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2523308878525400622}
   - component: {fileID: 5153511486439200731}
   - component: {fileID: -3714658416910965836}
+  - component: {fileID: 1393892159017220305}
+  - component: {fileID: 8356549818833855228}
   m_Layer: 0
   m_Name: LongShape
   m_TagString: Untagged
@@ -27,10 +29,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2356085916871448175}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.023}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4294989519276040855}
+  - {fileID: 7475741410511804673}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -45,7 +48,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9, y: 0.1, z: 0.49}
+  m_Size: {x: 2, y: 0.1, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0.25}
 --- !u!114 &5153511486439200731
 MonoBehaviour:
@@ -73,12 +76,102 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d77e2365851d4ddab787fee1695ef81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isControlled: 0
   _tetrominoPieces:
   - {fileID: 7582030041300815594}
   - {fileID: 1639459882409800552}
   - {fileID: 2842986420997618779}
   - {fileID: 5431569530676291159}
+--- !u!114 &1393892159017220305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2356085916871448175}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf8c767fa7ac945f79374a0db78243f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotationCollider: {fileID: 4929812361054047211}
+  OnTetrominoStuck:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &8356549818833855228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2356085916871448175}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 818db85cf3c434b5d93b3d50277478c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &7796751352897062988
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7475741410511804673}
+  - component: {fileID: 1727445148258508590}
+  - component: {fileID: 4929812361054047211}
+  m_Layer: 3
+  m_Name: RotationCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &7475741410511804673
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7796751352897062988}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 62287553885195954}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!65 &1727445148258508590
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7796751352897062988}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9, y: 0.1, z: 0.49}
+  m_Center: {x: 0, y: 0, z: 0.25}
+--- !u!114 &4929812361054047211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7796751352897062988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bf5c1e5b40a94afeab6b4db581adb41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnRotationCollisionEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRotationCollisionExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8883410547108153251
 GameObject:
   m_ObjectHideFlags: 0
