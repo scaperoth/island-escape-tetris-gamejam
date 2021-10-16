@@ -11,21 +11,6 @@ public class Pool : MonoBehaviour
         public PooledObject objectToPool;
     }
 
-    // Singleton boilerplate.
-    private static Pool _instance;
-    public static Pool Instance
-    {
-        get
-        {
-            if (!_instance)
-            {
-                _instance = FindObjectOfType<Pool>();
-            }
-
-            return _instance;
-        }
-    }
-
     // List of objects to pool (only used for instantiation)
     public List<ObjectPool> objectPools;
 

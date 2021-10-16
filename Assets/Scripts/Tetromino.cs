@@ -1,14 +1,21 @@
 using UnityEngine;
+using UnityEngine.Events;
+
+public struct Offset
+{
+    public Vector3 position;
+    public Vector3 rotation;
+}
 
 public class Tetromino : MonoBehaviour
 {
-
     [SerializeField]
     private TetrominoPiece[] _tetrominoPieces = new TetrominoPiece[] { };
 
     private TetrominoMovementControl _tetrominoMovementControl;
-    private TetrominoAutoMovement _tetrominoAutoMovement;
 
+    public UnityEvent<Tetromino> OnTetrominoStopped;
+    public UnityEvent<Tetromino> OnGameOver;
 
     public TetrominoPiece[] Pieces
     {
@@ -21,14 +28,14 @@ public class Tetromino : MonoBehaviour
     private void Awake()
     {
         _tetrominoMovementControl = GetComponent<TetrominoMovementControl>();
-        _tetrominoAutoMovement = GetComponent<TetrominoAutoMovement>();
     }
 
     private void OnEnable()
     {
         if (_tetrominoMovementControl != null)
         {
-            _tetrominoMovementControl.OnTetrominoStuck.AddListener(DisableControl);
+            _tetrominoMovementControl.OnTetrominoStuck.AddListener(TetrominoStuck);
+            _tetrominoMovementControl.OnGameOver.AddListener(GameOver);
         }
     }
 
@@ -36,7 +43,8 @@ public class Tetromino : MonoBehaviour
     {
         if (_tetrominoMovementControl != null)
         {
-            _tetrominoMovementControl.OnTetrominoStuck.RemoveListener(DisableControl);
+            _tetrominoMovementControl.OnTetrominoStuck.RemoveListener(TetrominoStuck);
+            _tetrominoMovementControl.OnGameOver.RemoveListener(GameOver);
         }
     }
 
@@ -46,10 +54,6 @@ public class Tetromino : MonoBehaviour
         {
             _tetrominoMovementControl.enabled = true;
         }
-        if (_tetrominoAutoMovement != null)
-        {
-            _tetrominoAutoMovement.enabled = true;
-        }
     }
 
     public void DisableControl()
@@ -58,9 +62,40 @@ public class Tetromino : MonoBehaviour
         {
             _tetrominoMovementControl.enabled = false;
         }
-        if (_tetrominoAutoMovement != null)
+    }
+
+    private void TetrominoStuck()
+    {
+        _tetrominoMovementControl.OnTetrominoStuck.RemoveListener(TetrominoStuck);
+        _tetrominoMovementControl.OnGameOver.RemoveListener(GameOver);
+        OnTetrominoStopped.Invoke(this);
+    }
+
+    private void GameOver()
+    {
+        OnGameOver.Invoke(this);
+    }
+
+    // TODO: Don't do this...
+    public Offset GetSpawnOffset()
+    {
+        Offset offset;
+        switch (gameObject.name)
         {
-            _tetrominoAutoMovement.enabled = false;
+            case "LongShape":
+                offset.position = new Vector3(.5f, 0f, .25f);
+                offset.rotation = new Vector3(0f, -90, 0f);
+                break;
+            case "SquareShape":
+                offset.position = new Vector3(0f, 0f, .25f);
+                offset.rotation = new Vector3(0f, 0, 0f);
+                break;
+            default:
+                offset.position = new Vector3(.25f, 0f, 0f);
+                offset.rotation = new Vector3(0f, -90, 0f);
+                break;
         }
+
+        return offset;
     }
 }

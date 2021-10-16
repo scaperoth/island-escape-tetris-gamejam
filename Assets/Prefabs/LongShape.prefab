@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5153511486439200731}
   - component: {fileID: -3714658416910965836}
   - component: {fileID: 1393892159017220305}
-  - component: {fileID: 8356549818833855228}
   m_Layer: 0
   m_Name: LongShape
   m_TagString: Untagged
@@ -81,6 +80,12 @@ MonoBehaviour:
   - {fileID: 1639459882409800552}
   - {fileID: 2842986420997618779}
   - {fileID: 5431569530676291159}
+  OnTetrominoStopped:
+    m_PersistentCalls:
+      m_Calls: []
+  OnGameOver:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1393892159017220305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,18 +102,9 @@ MonoBehaviour:
   OnTetrominoStuck:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8356549818833855228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2356085916871448175}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 818db85cf3c434b5d93b3d50277478c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  OnGameOver:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7796751352897062988
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +193,7 @@ Transform:
   m_GameObject: {fileID: 8883410547108153251}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5105121734885950896}
   - {fileID: 7140905814927843093}

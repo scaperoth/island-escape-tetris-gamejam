@@ -91,7 +91,6 @@ GameObject:
   - component: {fileID: 669576030913030076}
   - component: {fileID: 280473464803679777}
   - component: {fileID: 8471693746639238009}
-  - component: {fileID: 8577442588990434283}
   m_Layer: 0
   m_Name: LShapeFlip
   m_TagString: Untagged
@@ -172,6 +171,12 @@ MonoBehaviour:
   - {fileID: 4711993101358804881}
   - {fileID: 1979911265528024731}
   - {fileID: 2474271631174346777}
+  OnTetrominoStopped:
+    m_PersistentCalls:
+      m_Calls: []
+  OnGameOver:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8471693746639238009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,18 +193,9 @@ MonoBehaviour:
   OnTetrominoStuck:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8577442588990434283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3770293858274019566}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 818db85cf3c434b5d93b3d50277478c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  OnGameOver:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8045838182571956514
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,7 +221,7 @@ Transform:
   m_GameObject: {fileID: 8045838182571956514}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 551167464315412716}
   - {fileID: 3800278117567988716}

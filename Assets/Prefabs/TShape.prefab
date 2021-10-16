@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 669751017659687100}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3919356147200134036}
   - {fileID: 2990627711874942041}
@@ -125,7 +125,6 @@ GameObject:
   - component: {fileID: -7578161186453466322}
   - component: {fileID: 4417621127110030702}
   - component: {fileID: 6025611674149773369}
-  - component: {fileID: 333987208116395732}
   m_Layer: 0
   m_Name: TShape
   m_TagString: Untagged
@@ -206,6 +205,12 @@ MonoBehaviour:
   - {fileID: 6654569953821157412}
   - {fileID: 5849136195487551370}
   - {fileID: 7011849591294019322}
+  OnTetrominoStopped:
+    m_PersistentCalls:
+      m_Calls: []
+  OnGameOver:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6025611674149773369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,18 +227,9 @@ MonoBehaviour:
   OnTetrominoStuck:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &333987208116395732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5958586093970698608}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 818db85cf3c434b5d93b3d50277478c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  OnGameOver:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1346153341378599615
 PrefabInstance:
   m_ObjectHideFlags: 0
