@@ -116,7 +116,6 @@ GameObject:
   - component: {fileID: 5173137396221696376}
   - component: {fileID: 622794260589766471}
   - component: {fileID: 2065623203869545768}
-  - component: {fileID: 3898620079350470421}
   - component: {fileID: 3985753068592137259}
   m_Layer: 3
   m_Name: RotationCollider
@@ -166,21 +165,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.98, y: 0.1, z: 0.48}
-  m_Center: {x: 0, y: 0, z: -0.25}
---- !u!65 &3898620079350470421
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4682790524358027909}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.98, y: 0.1, z: 0.48}
-  m_Center: {x: 0, y: 0, z: 0.25}
+  m_Size: {x: 2, y: 0.2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3985753068592137259
 MonoBehaviour:
   m_ObjectHideFlags: 0
