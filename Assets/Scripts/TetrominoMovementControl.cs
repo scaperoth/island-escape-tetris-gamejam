@@ -60,12 +60,6 @@ public class TetrominoMovementControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // don't allow movement until after checks are done
-        if (_checkPositionAfterMove || _checkVerticalAllowanceAfterMove)
-        {
-            return;
-        }
-
         if (_rotationEnabled)
         {
             HandleRotation();
@@ -88,10 +82,14 @@ public class TetrominoMovementControl : MonoBehaviour
             intVert = 0;
         }
 
-        float adjustedMoveDelay = horizontal > 0 ? _moveDelay / 5f : _moveDelay;
+        float adjustedMoveDelay = horizontal > 0 ? _moveDelay / 10f : _moveDelay;
 
-        Move(0, intVert);
-        if (_lastMoveTime + adjustedMoveDelay < Time.time)
+        if (!_checkVerticalAllowanceAfterMove)
+        {
+            Move(0, intVert);
+        }
+
+        if (!_checkPositionAfterMove && _lastMoveTime + adjustedMoveDelay < Time.time)
         {
             Move(1, 0);
             _lastMoveTime = Time.time;
@@ -220,8 +218,14 @@ public class TetrominoMovementControl : MonoBehaviour
             {
                 _blockedMovement[2] = downBlocked;
             }
+
+            // leave early if found two blocked locations
+            if (_blockedMovement[1] && _blockedMovement[2])
+            {
+                return true;
+            }
         }
 
-        return false;
+        return _blockedMovement[1] || _blockedMovement[2];
     }
 }
