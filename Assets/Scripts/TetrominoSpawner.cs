@@ -18,16 +18,11 @@ public class TetrominoSpawner : MonoBehaviour
         Gizmos.DrawCube(transform.position, _spawnArea);
     }
 
-    private void Start()
-    {
-        SpawnTetromino();
-    }
-
-    void SpawnTetromino()
+    public Tetromino SpawnTetromino()
     {
         if(_tetrominosToSpawn.Length == 0)
         {
-            return;
+            return null;
         }
 
         Debug.Log("SPAWNING!");
@@ -42,26 +37,8 @@ public class TetrominoSpawner : MonoBehaviour
         Tetromino tetromino = instance.As<Tetromino>();
         Offset _offsets = tetromino.GetSpawnOffset();
         tetromino.transform.localPosition = _offsets.position;
-        tetromino.transform.localRotation = Quaternion.Euler(_offsets.rotation); 
+        tetromino.transform.localRotation = Quaternion.Euler(_offsets.rotation);
 
-        tetromino.OnTetrominoStopped.AddListener(HandleTetrominoStopped);
-        tetromino.OnGameOver.AddListener(HandleGameOver);
-
-        tetromino.EnableControl();
-    }
-
-    private void HandleTetrominoStopped(Tetromino tetromino)
-    {
-        Debug.Log("TETROMINO STUCK");
-        tetromino.DisableControl();
-        tetromino.OnTetrominoStopped.RemoveListener(HandleTetrominoStopped);
-        tetromino.OnTetrominoStopped.RemoveListener(HandleGameOver);
-        SpawnTetromino();
-    }
-
-    private void HandleGameOver(Tetromino tetromino)
-    {
-        tetromino.DisableControl();
-        Debug.Log("GAME OVER!");
+        return tetromino;
     }
 }
