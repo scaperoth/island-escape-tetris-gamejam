@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b063abab6224a7f4291257ca955a298f
+guid: 379725c1346b0469ba8f839c682d7b1a
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -34,12 +34,12 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.5
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
-    importVisibility: 1
+    sortHierarchyByName: 0
+    importVisibility: 0
     importBlendShapes: 0
     importCameras: 0
     importLights: 0
@@ -67,11 +67,11 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 2
-    normalCalculationMode: 1
+    tangentImportMode: 3
+    normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
-    normalSmoothingSource: 3
+    normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
   humanDescription:
@@ -85,7 +85,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.5
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
