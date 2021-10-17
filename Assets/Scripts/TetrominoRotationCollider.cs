@@ -5,15 +5,8 @@ using UnityEngine.Events;
 
 public class TetrominoRotationCollider : MonoBehaviour
 {
-
-    Transform _parentTransform;
     public UnityEvent OnRotationCollisionEnter;
     public UnityEvent OnRotationCollisionExit;
-
-    private void Start()
-    {
-        _parentTransform = GetComponentInParent<Transform>();    
-    }
 
     private void OnTriggerEnter(Collider other)
     {

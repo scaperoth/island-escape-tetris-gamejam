@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TetrominoPiece : MonoBehaviour
 {
-    private float _raycastOffset = .5f;
+    private float _raycastOffset = 1.5f;
     private Transform _transform;
     public Vector3 Position
     {
@@ -37,9 +37,9 @@ public class TetrominoPiece : MonoBehaviour
 #if UNITY_EDITOR
     private void FixedUpdate()
     {
-        //Debug.DrawRay(Position, Vector3.right * _raycastOffset, Color.red);
-        //Debug.DrawRay(Position, Vector3.forward * _raycastOffset, Color.green);
-        //Debug.DrawRay(Position, Vector3.back * _raycastOffset, Color.blue);
+        Debug.DrawRay(Position, Vector3.right * _raycastOffset, Color.red);
+        Debug.DrawRay(Position, Vector3.forward * _raycastOffset, Color.green);
+        Debug.DrawRay(Position, Vector3.back * _raycastOffset, Color.blue);
     }
 #endif
 

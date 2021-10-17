@@ -44,7 +44,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2356085916871448175}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 4, y: 0.2, z: 1}
@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 7475741410511804673}
   - component: {fileID: 1727445148258508590}
   - component: {fileID: 4929812361054047211}
+  - component: {fileID: 2626304298915507063}
   m_Layer: 3
   m_Name: RotationCollider
   m_TagString: Untagged
@@ -145,7 +146,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7796751352897062988}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 4, y: 0.2, z: 1}
@@ -168,6 +169,22 @@ MonoBehaviour:
   OnRotationCollisionExit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!54 &2626304298915507063
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7796751352897062988}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8883410547108153251
 GameObject:
   m_ObjectHideFlags: 0

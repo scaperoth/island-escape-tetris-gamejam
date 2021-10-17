@@ -41,10 +41,6 @@ public class TetrominoMovementControl : MonoBehaviour
     {
         _tetromino = GetComponent<Tetromino>();
         _collisionCheckLayerMask = ~((1 << _rotationColliderLayer) | (1 << _spawnAreaLayer));
-    }
-
-    private void OnEnable()
-    {
         _rotationCollider.OnRotationCollisionEnter.AddListener(DisableRotation);
         _rotationCollider.OnRotationCollisionExit.AddListener(EnableRotation);
         _rotationCollider.gameObject.SetActive(true);
@@ -87,11 +83,13 @@ public class TetrominoMovementControl : MonoBehaviour
         if (!_checkVerticalAllowanceAfterMove)
         {
             Move(0, intVert);
+            _checkVerticalAllowanceAfterMove = true;
         }
 
         if (!_checkPositionAfterMove && _lastMoveTime + adjustedMoveDelay < Time.time)
         {
             Move(1, 0);
+            _checkPositionAfterMove = true;
             _lastMoveTime = Time.time;
         }
     }
@@ -103,12 +101,9 @@ public class TetrominoMovementControl : MonoBehaviour
         Vector3 newPosition = transform.position + movement;
 
         transform.position = newPosition;
-
-        _checkPositionAfterMove = horiz > 0;
-        _checkVerticalAllowanceAfterMove = vert != 0;
     }
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         if (_checkVerticalAllowanceAfterMove)
         {
@@ -138,6 +133,7 @@ public class TetrominoMovementControl : MonoBehaviour
 
     public void DisableRotation()
     {
+        Debug.Log("ROTATION DISABLED");
         _rotationEnabled = false;
     }
     public void EnableRotation()
