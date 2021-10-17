@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TetrominoPiece : MonoBehaviour
 {
-    private float _raycastOffset = 1.5f;
+    private float _raycastOffset = 1f;
     private Transform _transform;
     public Vector3 Position
     {

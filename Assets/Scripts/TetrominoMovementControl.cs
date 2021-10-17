@@ -182,6 +182,9 @@ public class TetrominoMovementControl : MonoBehaviour
             bool upInSpawnArea = Physics.Raycast(position, Vector3.forward, out uphit, 10, (1 << _spawnAreaLayer));
             bool downInSpawnArea = Physics.Raycast(position, Vector3.back, out downhit, 10, (1 << _spawnAreaLayer));
 
+            Debug.DrawRay(position, Vector3.forward * 10, Color.green);
+            Debug.DrawRay(position, Vector3.back * 10, Color.blue);
+
             if (upInSpawnArea || downInSpawnArea)
             {
                 return true;
