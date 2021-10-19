@@ -41,55 +41,58 @@ public class PlayField : MonoBehaviour
                 (int)pos.x < width);
     }
 
-    public void DeleteRow(int y)
+    public void DeleteRow(int x)
     {
-        for (int x = 0; x < width; ++x)
+        for (int z = 0; z < height; ++z)
         {
-            Destroy(grid[x, y].gameObject);
-            grid[x, y] = null;
+            grid[x, z].gameObject.SetActive(false);
+            grid[x, z] = null;
         }
     }
 
-    public void DecreaseRow(int y)
+    public void DecreaseRow(int x)
     {
-        for (int x = 0; x < width; ++x)
+        for (int z = 0; z < height; ++z)
         {
-            if (grid[x, y] != null)
+            if (grid[x, z] != null)
             {
                 // Move one towards bottom
-                grid[x, y - 1] = grid[x, y];
-                grid[x, y] = null;
+                grid[x + 1, z] = grid[x, z];
+                grid[x, z] = null;
 
                 // Update Block position
-                grid[x, y - 1].position += new Vector3(0, -1, 0);
+                grid[x+1, z].position += Vector3.right;
             }
         }
     }
 
-    public void DecreaseRowsAbove(int y)
+    public void DecreaseRowsAbove(int x)
     {
-        for (int i = y; i < height; ++i)
+        for (int i = x; i >= 0; --i)
             DecreaseRow(i);
     }
 
-    public bool IsRowFull(int y)
+    public bool IsRowFull(int x)
     {
-        for (int x = 0; x < width; ++x)
-            if (grid[x, y] == null)
+        for (int z = 0; z < height; ++z)
+            if (grid[x, z] == null)
                 return false;
         return true;
     }
 
     public void DeleteFullRows()
     {
-        for (int y = 0; y < height; ++y)
+        for (int x = width - 1; x >= 0; --x)
         {
-            if (IsRowFull(y))
+            if (IsRowFull(x))
             {
-                DeleteRow(y);
-                DecreaseRowsAbove(y + 1);
-                --y;
+                DeleteRow(x);
+                DecreaseRowsAbove(x - 1);
+                --x;
             }
         }
     }
 }
+
+// cfn connect exists in dev
+// use cloudformation for staging data

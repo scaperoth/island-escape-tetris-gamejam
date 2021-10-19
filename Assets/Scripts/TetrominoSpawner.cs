@@ -33,11 +33,10 @@ public class TetrominoSpawner : MonoBehaviour
 
         // We can avoid GetComponent<>() for a frequently accessed component, which is nice.
         Tetromino tetromino = instance.As<Tetromino>();
-        Offset _offsets = tetromino.GetSpawnOffset();
 
         tetromino.SetPlayfield(_playField);
         //tetromino.transform.localPosition = _offsets.position;
-        tetromino.transform.localRotation = Quaternion.Euler(_offsets.rotation);
+        tetromino.transform.localRotation = Quaternion.Euler(0, -90, 0);
         
         return tetromino;
     }

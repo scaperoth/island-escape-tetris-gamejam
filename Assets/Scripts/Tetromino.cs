@@ -232,27 +232,4 @@ public class Tetromino : MonoBehaviour
             _playField.grid[(int)v.x, (int)v.z] = child;
         }
     }
-
-    // TODO: Don't do this...
-    public Offset GetSpawnOffset()
-    {
-        Offset offset;
-        switch (gameObject.name)
-        {
-            case "LongShape(Clone)":
-                offset.position = new Vector3(1f, 0f, .5f);
-                offset.rotation = new Vector3(0f, -90, 0f);
-                break;
-            case "SquareShape(Clone)":
-                offset.position = new Vector3(0f, 0f, .5f);
-                offset.rotation = new Vector3(0f, 0, 0f);
-                break;
-            default:
-                offset.position = new Vector3(.5f, 0f, 0f);
-                offset.rotation = new Vector3(0f, -90, 0f);
-                break;
-        }
-
-        return offset;
-    }
 }

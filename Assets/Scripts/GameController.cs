@@ -20,8 +20,6 @@ public class GameController : MonoBehaviour
 
     private void OnSpawn(Tetromino tetromino)
     {
-        Offset _offsets = tetromino.GetSpawnOffset();
-
         tetromino.OnTetrominoStopped.AddListener(HandleTetrominoStopped);
         tetromino.OnGameOver.AddListener(HandleGameOver);
         tetromino.gameObject.SetActive(true);
