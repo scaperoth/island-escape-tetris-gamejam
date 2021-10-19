@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,7 +17,14 @@ public class Tetromino : MonoBehaviour
 
     public UnityEvent<Tetromino> OnTetrominoStopped;
     public UnityEvent<Tetromino> OnGameOver;
-    public Transform[] _childTransforms;
+    private Transform[] _childTransforms;
+    private Rigidbody[] _childRigidBody;
+    public Rigidbody[] BlockRigidBodies {
+        get
+        {
+            return _childRigidBody;
+        }
+    }
 
     private float _moveTimeAdjustment = 1f / 5f;
     private float _fallTime = .5f;
@@ -24,7 +32,7 @@ public class Tetromino : MonoBehaviour
 
     private void Awake()
     {
-        if (_childTransforms.Length == 0)
+        if (_childTransforms == null || _childTransforms.Length == 0)
         {
             SetChildTransforms();
         }
@@ -32,12 +40,12 @@ public class Tetromino : MonoBehaviour
 
     private void OnEnable()
     {
-        if (_childTransforms.Length == 0)
+        if (_childTransforms == null || _childTransforms.Length == 0)
         {
             SetChildTransforms();
         }
 
-        if (_playField != null && !IsValidGridPos(Vector3.zero))
+        if (_playField != null && !IsValidGridPos(Vector3.right))
         {
             enabled = false;
             OnGameOver.Invoke(this);
@@ -139,9 +147,11 @@ public class Tetromino : MonoBehaviour
     {
         Transform shapeManager = transform.GetChild(0);
         _childTransforms = new Transform[shapeManager.childCount];
+        _childRigidBody = new Rigidbody[shapeManager.childCount];
         for (int i = 0; i < _childTransforms.Length; i++)
         {
             _childTransforms[i] = shapeManager.GetChild(i);
+            _childRigidBody[i] = _childTransforms[i].GetComponent<Rigidbody>();
         }
     }
 
@@ -171,9 +181,15 @@ public class Tetromino : MonoBehaviour
             if (!_playField.InsideBorder(v))
                 return false;
 
-            // Block in grid cell (and not part of same group)?
-            if (_playField.grid[x, z] != null &&
-                !ReferenceEquals(_playField.grid[x, z].parent.parent.gameObject, gameObject))
+            try
+            {
+                // Block in grid cell (and not part of same group)?
+                if (_playField.grid[x, z] != null &&
+                    _playField.grid[x, z].parent.parent != transform)
+                {
+                    return false;
+                }
+            }catch(Exception e)
             {
                 return false;
             }
@@ -204,7 +220,7 @@ public class Tetromino : MonoBehaviour
 
             // Block in grid cell (and not part of same group)?
             if (_playField.grid[x, z] != null &&
-                !ReferenceEquals(_playField.grid[x, z].parent.parent.gameObject, gameObject))
+                _playField.grid[x, z].parent.parent != transform)
             {
                 return false;
             }

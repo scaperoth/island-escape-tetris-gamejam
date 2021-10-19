@@ -82,13 +82,12 @@ public class PlayField : MonoBehaviour
 
     public void DeleteFullRows()
     {
-        for (int x = width - 1; x >= 0; --x)
+        for (int x = 0; x < width; ++x)
         {
             if (IsRowFull(x))
             {
                 DeleteRow(x);
-                DecreaseRowsAbove(x - 1);
-                --x;
+                DecreaseRowsAbove(x);
             }
         }
     }

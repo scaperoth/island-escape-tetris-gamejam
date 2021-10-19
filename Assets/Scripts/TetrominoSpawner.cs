@@ -4,8 +4,22 @@ public class TetrominoSpawner : MonoBehaviour
 {
     [SerializeField]
     private Pool _objectPool;
+    public Pool ObjectPool
+    {
+        get
+        {
+            return _objectPool;
+        }
+    }
     [SerializeField]
     private PooledObject[] _tetrominosToSpawn;
+    public PooledObject[] TetrominosToSpawn
+    {
+        get
+        {
+            return _tetrominosToSpawn;
+        }
+    }
 
     [SerializeField]
     private Vector3 _spawnArea = Vector3.zero;
