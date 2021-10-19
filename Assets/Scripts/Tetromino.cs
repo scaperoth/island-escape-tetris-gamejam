@@ -18,7 +18,7 @@ public class Tetromino : MonoBehaviour
     public UnityEvent<Tetromino> OnGameOver;
     public Transform[] _childTransforms;
 
-    private float _moveTimeAdjustment = 1f/5f;
+    private float _moveTimeAdjustment = 1f / 5f;
     private float _fallTime = .5f;
     private float _lastFall = 0;
 
@@ -87,14 +87,20 @@ public class Tetromino : MonoBehaviour
         }
 
         // Rotate
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetButtonDown("Rotate"))
         {
             Vector3 rotation = new Vector3(0, -90, 0);
 
             // See if valid
             if (IsValidGridRot(rotation))
             {
-                transform.Rotate(rotation);
+                foreach (Transform child in _childTransforms)
+                {
+                    Vector3 v = child.position - (transform.position + _pivotOffset);
+                    v = Quaternion.Euler(rotation) * v;
+                    child.transform.position = v + (transform.position + _pivotOffset);
+                }
+
                 // It's valid. Update grid.
                 UpdateGrid();
             }
@@ -149,7 +155,7 @@ public class Tetromino : MonoBehaviour
 
     bool IsValidGridPos(Vector3 movment)
     {
-        if(!_playField)
+        if (!_playField)
         {
             Debug.LogError("Tetromino needs reference to playfield to validate grid positions. Use SetPlayField after instantiation");
             return false;
@@ -188,7 +194,7 @@ public class Tetromino : MonoBehaviour
         {
             Vector3 v = child.position - (transform.position + _pivotOffset);
             v = Quaternion.Euler(rotation) * v;
-            v = _playField.RoundVec3(v + (transform.position + _pivotOffset));
+            v = v + (transform.position + _pivotOffset);
             int x = (int)v.x;
             int z = (int)v.z;
 
@@ -215,7 +221,7 @@ public class Tetromino : MonoBehaviour
             {
                 Transform loc = _playField.grid[x, z];
                 if (loc != null && ReferenceEquals(loc.parent.parent.gameObject, gameObject))
-                        _playField.grid[x, z] = null;
+                    _playField.grid[x, z] = null;
             }
         }
 
