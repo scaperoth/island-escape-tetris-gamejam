@@ -15,30 +15,30 @@ public class TetrominoSpawner : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = _gizmosColor;
-        Gizmos.DrawCube(transform.position, _spawnArea);
+        Gizmos.DrawCube(transform.position, transform.localScale);
     }
 
-    public Tetromino SpawnTetromino()
+    public Tetromino SpawnTetromino(PlayField _playField)
     {
-        if(_tetrominosToSpawn.Length == 0)
+        if(_tetrominosToSpawn.Length == 0 || _playField == null)
         {
             return null;
         }
-
-        Debug.Log("SPAWNING!");
 
         int randomIndex = Random.Range(0, _tetrominosToSpawn.Length - 1);
         PooledObject pooledObject = _tetrominosToSpawn[randomIndex];
 
         // Spawn object with random 2D rotation.
-        PooledObject instance = _objectPool.Spawn(pooledObject, transform.position, Quaternion.Euler(0f, -90f, 0f));
-        
+        PooledObject instance = _objectPool.Spawn(pooledObject, transform.position, Quaternion.Euler(0f, -90f, 0f), false);
+
         // We can avoid GetComponent<>() for a frequently accessed component, which is nice.
         Tetromino tetromino = instance.As<Tetromino>();
         Offset _offsets = tetromino.GetSpawnOffset();
-        tetromino.transform.localPosition = _offsets.position;
-        tetromino.transform.localRotation = Quaternion.Euler(_offsets.rotation);
 
+        tetromino.SetPlayfield(_playField);
+        //tetromino.transform.localPosition = _offsets.position;
+        tetromino.transform.localRotation = Quaternion.Euler(_offsets.rotation);
+        
         return tetromino;
     }
 }

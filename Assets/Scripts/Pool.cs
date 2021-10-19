@@ -76,6 +76,16 @@ public class Pool : MonoBehaviour
         return clone;
     }
 
+    // Gets an object from the pool and returns it after setting position, rotation, and active.
+    public PooledObject Spawn(PooledObject obj, Vector3 position, Quaternion rotation, bool setActive)
+    {
+        var clone = GetNextObject(obj);
+        clone.transform.position = position;
+        clone.transform.rotation = rotation;
+        clone.gameObject.SetActive(setActive);
+        return clone;
+    }
+
     private void ReQueue(PooledObject obj)
     {
         // Hide object and insert back in queue for reuse.

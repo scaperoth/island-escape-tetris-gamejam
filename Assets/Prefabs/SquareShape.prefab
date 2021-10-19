@@ -9,11 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3215910837208077399}
-  - component: {fileID: 8309943223460594964}
   - component: {fileID: -2988506677303841845}
   - component: {fileID: 9118887094568405023}
-  - component: {fileID: 3311985678406410882}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SquareShape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,19 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8309943223460594964
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 922675273989672074}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 0.2, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-2988506677303841845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,36 +60,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d77e2365851d4ddab787fee1695ef81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tetrominoPieces:
-  - {fileID: 2477965739723858329}
-  - {fileID: 1095291433155080540}
-  - {fileID: 4777222974567899282}
-  - {fileID: 863634583146486772}
+  _playField: {fileID: 0}
   OnTetrominoStopped:
     m_PersistentCalls:
       m_Calls: []
   OnGameOver:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3311985678406410882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 922675273989672074}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf8c767fa7ac945f79374a0db78243f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rotationCollider: {fileID: 3985753068592137259}
-  OnTetrominoStuck:
-    m_PersistentCalls:
-      m_Calls: []
-  OnGameOver:
-    m_PersistentCalls:
-      m_Calls: []
+  _childTransforms: []
 --- !u!1 &4682790524358027909
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,7 +80,7 @@ GameObject:
   - component: {fileID: 2065623203869545768}
   - component: {fileID: 3985753068592137259}
   - component: {fileID: 3942109654888636825}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: RotationCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +157,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1722241870159280242}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShapeManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,6 +238,10 @@ PrefabInstance:
       value: driftwoodpiece1 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 3423288075411278737, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3423288075411278737, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -285,17 +252,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2650974154035564843, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
   m_PrefabInstance: {fileID: 60755631189770629}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &863634583146486772 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 804992042279869041, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
-  m_PrefabInstance: {fileID: 60755631189770629}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d670915b39cf48c3ae32af6da787df8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1117468800218423575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -306,6 +262,10 @@ PrefabInstance:
     - target: {fileID: 1286363707671014333, guid: 97cc6420e913c6a4187784d46eba1628, type: 3}
       propertyPath: m_Name
       value: driftwoodpiece3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286363707671014333, guid: 97cc6420e913c6a4187784d46eba1628, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1286363707671014333, guid: 97cc6420e913c6a4187784d46eba1628, type: 3}
       propertyPath: m_IsActive
@@ -362,17 +322,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1914527192891470087, guid: 97cc6420e913c6a4187784d46eba1628, type: 3}
   m_PrefabInstance: {fileID: 1117468800218423575}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4777222974567899282 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5606437312439091589, guid: 97cc6420e913c6a4187784d46eba1628, type: 3}
-  m_PrefabInstance: {fileID: 1117468800218423575}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d670915b39cf48c3ae32af6da787df8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1230233782382647841
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -383,6 +332,10 @@ PrefabInstance:
     - target: {fileID: 6967959658033520058, guid: 465d207f8b930c44ea2c3ff94d9f84d5, type: 3}
       propertyPath: m_Name
       value: driftwoodpiece2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6967959658033520058, guid: 465d207f8b930c44ea2c3ff94d9f84d5, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6967959658033520058, guid: 465d207f8b930c44ea2c3ff94d9f84d5, type: 3}
       propertyPath: m_IsActive
@@ -439,17 +392,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7780244096285099776, guid: 465d207f8b930c44ea2c3ff94d9f84d5, type: 3}
   m_PrefabInstance: {fileID: 1230233782382647841}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1095291433155080540 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2171274718385466237, guid: 465d207f8b930c44ea2c3ff94d9f84d5, type: 3}
-  m_PrefabInstance: {fileID: 1230233782382647841}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d670915b39cf48c3ae32af6da787df8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2974741119101811688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -506,6 +448,10 @@ PrefabInstance:
       value: driftwoodpiece1
       objectReference: {fileID: 0}
     - target: {fileID: 3423288075411278737, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3423288075411278737, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -516,14 +462,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2650974154035564843, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
   m_PrefabInstance: {fileID: 2974741119101811688}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2477965739723858329 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 804992042279869041, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
-  m_PrefabInstance: {fileID: 2974741119101811688}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d670915b39cf48c3ae32af6da787df8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
