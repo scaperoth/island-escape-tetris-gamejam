@@ -189,7 +189,7 @@ public class Tetromino : MonoBehaviour
                 {
                     return false;
                 }
-            }catch(Exception e)
+            }catch(Exception)
             {
                 return false;
             }

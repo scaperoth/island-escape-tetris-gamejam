@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 62287553885195954}
   - component: {fileID: 5153511486439200731}
   - component: {fileID: -3714658416910965836}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LongShape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,6 @@ MonoBehaviour:
   OnGameOver:
     m_PersistentCalls:
       m_Calls: []
-  _childTransforms: []
 --- !u!1 &7796751352897062988
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,7 +80,7 @@ GameObject:
   - component: {fileID: 1727445148258508590}
   - component: {fileID: 4929812361054047211}
   - component: {fileID: 2626304298915507063}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: RotationCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +157,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4294989519276040855}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: ShapeManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,7 +195,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6967959658033520058, guid: 465d207f8b930c44ea2c3ff94d9f84d5, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6967959658033520058, guid: 465d207f8b930c44ea2c3ff94d9f84d5, type: 3}
       propertyPath: m_IsActive
@@ -310,11 +309,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3423288075411278737, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3423288075411278737, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8821930290337631006, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
@@ -380,11 +383,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3423288075411278737, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3423288075411278737, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8821930290337631006, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
@@ -406,7 +413,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1286363707671014333, guid: 97cc6420e913c6a4187784d46eba1628, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1286363707671014333, guid: 97cc6420e913c6a4187784d46eba1628, type: 3}
       propertyPath: m_IsActive

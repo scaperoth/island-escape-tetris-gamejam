@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class GameController : MonoBehaviour
 {
@@ -11,9 +11,11 @@ public class GameController : MonoBehaviour
     private PlayField _playField;
     [SerializeField]
     ParticleSystem _particles;
+    public UnityEvent OnRespawn;
+    public UnityEvent OnGameOver;
 
-    //Ray[] _gridRays;
     Tetromino _lastSpawnedTetromino;
+
 
     private void Start()
     {
@@ -32,11 +34,13 @@ public class GameController : MonoBehaviour
     {
         tetromino.OnTetrominoStopped.RemoveListener(HandleTetrominoStopped);
         tetromino.OnTetrominoStopped.RemoveListener(HandleGameOver);
-
         _lastSpawnedTetromino = _tetrominoSpawner.SpawnTetromino(_playField);
+
+        OnRespawn.Invoke();
+
         OnSpawn(_lastSpawnedTetromino);
 
-        Debug.Log("DONE, Spawning...");
+        //HandleGameOver(_lastSpawnedTetromino);
     }
 
     private void Update()
@@ -50,7 +54,6 @@ public class GameController : MonoBehaviour
 
     private void HandleGameOver(Tetromino tetromino)
     {
-        Debug.Log("GAME OVER!");
         tetromino.enabled = false;
         Transform poolTransform = _tetrominoSpawner.ObjectPool.transform;
         for(int i = 0; i < poolTransform.childCount; i++)
@@ -64,15 +67,16 @@ public class GameController : MonoBehaviour
         }
 
         Vector3 explosionPos = _playField.transform.position;
-        Collider[] colliders = Physics.OverlapSphere(explosionPos, 30);
+        Collider[] colliders = Physics.OverlapSphere(explosionPos, 50);
         foreach (Collider hit in colliders)
         {
             Rigidbody rb = hit.GetComponent<Rigidbody>();
 
             if (rb != null)
-                rb.AddExplosionForce(500, explosionPos, 10f, 50);
+                rb.AddExplosionForce(500, explosionPos, 10f, 100);
                 
         }
         _particles.Play();
+        OnGameOver.Invoke();
     }
 }

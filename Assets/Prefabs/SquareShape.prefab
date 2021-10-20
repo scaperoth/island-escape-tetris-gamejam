@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3215910837208077399}
   - component: {fileID: -2988506677303841845}
   - component: {fileID: 9118887094568405023}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SquareShape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,13 +61,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playField: {fileID: 0}
+  _pivotOffset: {x: 0, y: 0, z: 0}
   OnTetrominoStopped:
     m_PersistentCalls:
       m_Calls: []
   OnGameOver:
     m_PersistentCalls:
       m_Calls: []
-  _childTransforms: []
 --- !u!1 &4682790524358027909
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 2065623203869545768}
   - component: {fileID: 3985753068592137259}
   - component: {fileID: 3942109654888636825}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: RotationCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1722241870159280242}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: ShapeManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,11 +239,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3423288075411278737, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3423288075411278737, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8821930290337631006, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
@@ -265,7 +269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1286363707671014333, guid: 97cc6420e913c6a4187784d46eba1628, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1286363707671014333, guid: 97cc6420e913c6a4187784d46eba1628, type: 3}
       propertyPath: m_IsActive
@@ -335,7 +339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6967959658033520058, guid: 465d207f8b930c44ea2c3ff94d9f84d5, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6967959658033520058, guid: 465d207f8b930c44ea2c3ff94d9f84d5, type: 3}
       propertyPath: m_IsActive
@@ -449,11 +453,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3423288075411278737, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3423288075411278737, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8821930290337631006, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1458589937832005683}
   - component: {fileID: -1612461245576821375}
   - component: {fileID: 8135315026014566227}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LShape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,6 @@ MonoBehaviour:
   OnGameOver:
     m_PersistentCalls:
       m_Calls: []
-  _childTransforms: []
 --- !u!1 &5922733299150613848
 GameObject:
   m_ObjectHideFlags: 0
@@ -82,7 +81,7 @@ GameObject:
   - component: {fileID: 5869969953390855584}
   - component: {fileID: 1905805160134216741}
   - component: {fileID: 2555166095448067559}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: RotationCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +171,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3421161040264018966}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: ShapeManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,11 +253,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3423288075411278737, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3423288075411278737, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8821930290337631006, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
@@ -280,7 +283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6967959658033520058, guid: 465d207f8b930c44ea2c3ff94d9f84d5, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6967959658033520058, guid: 465d207f8b930c44ea2c3ff94d9f84d5, type: 3}
       propertyPath: m_IsActive
@@ -394,11 +397,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3423288075411278737, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3423288075411278737, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8821930290337631006, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6b1e8676d30c0d4bbb186318454d634, type: 3}
@@ -420,7 +427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1286363707671014333, guid: 97cc6420e913c6a4187784d46eba1628, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1286363707671014333, guid: 97cc6420e913c6a4187784d46eba1628, type: 3}
       propertyPath: m_IsActive
