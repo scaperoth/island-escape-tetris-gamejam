@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayField : MonoBehaviour
 {
@@ -13,6 +12,8 @@ public class PlayField : MonoBehaviour
 
     [SerializeField]
     private Color _gizmosColor = new Color(0.5f, 0.5f, 0.5f, 0.2f);
+
+    public UnityEvent<int> OnLineCleared;
 
     void OnDrawGizmos()
     {
@@ -82,16 +83,20 @@ public class PlayField : MonoBehaviour
 
     public void DeleteFullRows()
     {
+        int numRowsDeleted = 0;
         for (int x = 0; x < width; ++x)
         {
             if (IsRowFull(x))
             {
                 DeleteRow(x);
                 DecreaseRowsAbove(x);
+                numRowsDeleted++;
             }
+        }
+
+        if(numRowsDeleted > 0)
+        {
+            OnLineCleared.Invoke(numRowsDeleted);
         }
     }
 }
-
-// cfn connect exists in dev
-// use cloudformation for staging data

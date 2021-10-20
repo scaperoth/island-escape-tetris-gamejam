@@ -5,26 +5,54 @@ using UnityEngine.Events;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField]
-    private TetrominoSpawner _tetrominoSpawner;
+    [Header("Game Area")]
     [SerializeField]
     private PlayField _playField;
     [SerializeField]
+    private TetrominoSpawner _tetrominoSpawner;
+
+    [Header("Scoring")]
+    [SerializeField]
+    private int _baseScore = 100;
+    [SerializeField]
+    private IntVariable _gameScore;
+
+    [Header("Effects")]
+    [SerializeField]
     ParticleSystem _particles;
+
+    // events
     public UnityEvent OnRespawn;
     public UnityEvent OnGameOver;
+    public UnityEvent OnPause;
 
+    // state store
+    bool _gameOver = false;
     Tetromino _lastSpawnedTetromino;
-
 
     private void Start()
     {
+        // kick off the spawner
         _lastSpawnedTetromino = _tetrominoSpawner.SpawnTetromino(_playField);
         OnSpawn(_lastSpawnedTetromino);
+
+        // reset the score
+        _gameScore.SetValue(0);
+    }
+
+    private void OnEnable()
+    {
+        _playField.OnLineCleared.AddListener(UpdateScore);
+    }
+
+    private void OnDisable()
+    {
+        _playField.OnLineCleared.RemoveListener(UpdateScore);
     }
 
     private void OnSpawn(Tetromino tetromino)
     {
+        // after spawn, subscribe to events and turn on object
         tetromino.OnTetrominoStopped.AddListener(HandleTetrominoStopped);
         tetromino.OnGameOver.AddListener(HandleGameOver);
         tetromino.gameObject.SetActive(true);
@@ -32,23 +60,31 @@ public class GameController : MonoBehaviour
 
     private void HandleTetrominoStopped(Tetromino tetromino)
     {
+        // when the tetromino is stopped, clear the events and get another one
         tetromino.OnTetrominoStopped.RemoveListener(HandleTetrominoStopped);
         tetromino.OnTetrominoStopped.RemoveListener(HandleGameOver);
         _lastSpawnedTetromino = _tetrominoSpawner.SpawnTetromino(_playField);
-
-        OnRespawn.Invoke();
-
         OnSpawn(_lastSpawnedTetromino);
 
-        //HandleGameOver(_lastSpawnedTetromino);
+        // fire event for anything looking
+        OnRespawn.Invoke();
+
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        // reload control for game over
+        if (_gameOver && Input.GetButtonDown("Submit"))
         {
             Scene scene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(scene.name);
+        }
+
+        // pause screen
+        if (!_gameOver && Input.GetButtonDown("Cancel"))
+        {
+            _lastSpawnedTetromino.enabled = false;
+            OnPause.Invoke();
         }
     }
 
@@ -78,5 +114,17 @@ public class GameController : MonoBehaviour
         }
         _particles.Play();
         OnGameOver.Invoke();
+        _gameOver = true;
+    }
+
+    private void UpdateScore(int rowsCleared)
+    {
+        int newScore = (rowsCleared + (rowsCleared - 1)) * _baseScore;
+        _gameScore.AddToValue(newScore);
+    }
+
+    public void UnPause()
+    {
+        _lastSpawnedTetromino.enabled = true;
     }
 }

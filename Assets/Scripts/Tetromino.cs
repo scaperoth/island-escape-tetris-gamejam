@@ -15,8 +15,6 @@ public class Tetromino : MonoBehaviour
     [SerializeField]
     Vector3 _pivotOffset = Vector3.zero;
 
-    public UnityEvent<Tetromino> OnTetrominoStopped;
-    public UnityEvent<Tetromino> OnGameOver;
     private Transform[] _childTransforms;
     private Rigidbody[] _childRigidBody;
     public Rigidbody[] BlockRigidBodies {
@@ -29,6 +27,9 @@ public class Tetromino : MonoBehaviour
     private float _moveTimeAdjustment = 1f / 5f;
     private float _fallTime = .5f;
     private float _lastFall = 0;
+
+    public UnityEvent<Tetromino> OnTetrominoStopped;
+    public UnityEvent<Tetromino> OnGameOver;
 
     private void Awake()
     {

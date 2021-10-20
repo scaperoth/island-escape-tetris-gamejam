@@ -39,7 +39,7 @@ public class TetrominoSpawner : MonoBehaviour
             return null;
         }
 
-        int randomIndex = Random.Range(0, _tetrominosToSpawn.Length - 1);
+        int randomIndex = Random.Range(0, _tetrominosToSpawn.Length);
         PooledObject pooledObject = _tetrominosToSpawn[randomIndex];
 
         // Spawn object with random 2D rotation.

@@ -16,4 +16,9 @@ public class StateDrivenCameraController : MonoBehaviour
     {
         _animator.Play("PlayCamera");
     }
+
+    public void SwitchToPauseCamera()
+    {
+        _animator.Play("PauseCamera");
+    }
 }
