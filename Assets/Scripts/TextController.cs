@@ -3,27 +3,27 @@ using UnityEngine;
 using TMPro;
 
 [RequireComponent(typeof(TextMeshPro))]
-public class ScoreController : MonoBehaviour
+public class TextController : MonoBehaviour
 {
     [SerializeField]
     private IntVariable _score;
     private TextMeshPro _tmpro;
     [SerializeField]
-    private string _scorePrefix = "Score: ";
+    private string _textPrefix = "Score: ";
 
     // Start is called before the first frame update
     void Start()
     {
         _tmpro = GetComponent<TextMeshPro>();
-        _score.OnValueChanged.AddListener(UpdateScoreText);
-        UpdateScoreText(_score.Value);
+        _score.OnValueChanged.AddListener(UpdateText);
+        UpdateText(_score.Value);
     }
 
-    void UpdateScoreText(int newValue)
+    void UpdateText(int newValue)
     {
-        if (_scorePrefix != "")
+        if (_textPrefix != "")
         {
-            _tmpro.text = $"{_scorePrefix} {newValue}";
+            _tmpro.text = $"{_textPrefix} {newValue}";
         }
         else
         {

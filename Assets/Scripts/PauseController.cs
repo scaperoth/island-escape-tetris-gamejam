@@ -20,7 +20,7 @@ public class PauseController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Application.Quit();
+            SceneManager.LoadScene("Main Menu");
         }
 
         if (Input.GetKeyDown(KeyCode.R))

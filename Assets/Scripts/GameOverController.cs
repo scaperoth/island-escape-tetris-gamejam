@@ -8,7 +8,7 @@ public class GameOverController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Q))
         {
-            Application.Quit();
+            SceneManager.LoadScene("Main Menu");
         }
 
         if (Input.GetButtonDown("Submit") || Input.GetKeyDown(KeyCode.R))

@@ -19,7 +19,7 @@ public class Block : MonoBehaviour
             if (_rb.useGravity)
             {
                 _rb.useGravity = false;
-                _rb.velocity = new Vector3(0, -.5f, 0);
+                _rb.velocity = new Vector3(0, -1f, 0);
             }
         }
     }
