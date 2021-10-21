@@ -25,7 +25,8 @@ public class Tetromino : MonoBehaviour
     }
 
     private float _moveTimeAdjustment = 1f / 5f;
-    private float _fallTime = .5f;
+    [SerializeField]
+    private FloatVariable _fallTime;
     private float _lastFall = 0;
 
     public UnityEvent<Tetromino> OnTetrominoStopped;
@@ -116,8 +117,8 @@ public class Tetromino : MonoBehaviour
         }
 
         // Move Downwards and Fall
-        else if ((horizValue > 0 && Time.time - _lastFall >= (_fallTime * _moveTimeAdjustment)) ||
-            Time.time - _lastFall >= _fallTime)
+        else if ((horizValue > 0 && Time.time - _lastFall >= Mathf.Clamp(_fallTime.Value * _moveTimeAdjustment, _fallTime.MinValue, 1f)) ||
+            Time.time - _lastFall >= _fallTime.Value)
         {
             // Modify position
             Vector3 movement = Vector3.right;

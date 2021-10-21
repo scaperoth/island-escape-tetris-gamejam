@@ -1,20 +1,22 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class GameOverController : MonoBehaviour
 {
+    public UnityEvent OnRestart;
+    public UnityEvent OnQuit;
+
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKey(KeyCode.Q))
         {
-            SceneManager.LoadScene("Main Menu");
+            OnQuit.Invoke();
         }
 
         if (Input.GetButtonDown("Submit") || Input.GetKeyDown(KeyCode.R))
         {
-            Scene scene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(scene.name);
+            OnRestart.Invoke();
         }
     }
 }

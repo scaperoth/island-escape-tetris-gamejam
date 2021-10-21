@@ -156,6 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playField: {fileID: 0}
   _pivotOffset: {x: -0.5, y: 0, z: -0.5}
+  _fallTime: {fileID: 11400000, guid: 24c19009cadc5b144bae07ad0057c572, type: 2}
   OnTetrominoStopped:
     m_PersistentCalls:
       m_Calls: []

@@ -5,6 +5,22 @@ using UnityEngine.Events;
 
 public class GameController : MonoBehaviour
 {
+    [Header("Rules")]
+    [SerializeField]
+    private FloatVariable _speed;
+    [SerializeField]
+    private IntVariable _level;
+    private int _totalRowsCleared = 0;
+    private int _rowsCleraedThisLevel = 0;
+    private int[] _levelBreakPoints = new int[]
+    {
+        0,1,2,3,4,5,6,7,8,9
+    };
+    private float[] _levelSpeeds = new float[]
+    {
+        .5f,.43f,.38f,.33f,.28f,.23f,.18f,.13f,.08f,.06f
+    };
+
     [Header("Game Area")]
     [SerializeField]
     private PlayField _playField;
@@ -35,18 +51,17 @@ public class GameController : MonoBehaviour
         // kick off the spawner
         _lastSpawnedTetromino = _tetrominoSpawner.SpawnTetromino(_playField);
         OnSpawn(_lastSpawnedTetromino);
-
-        // reset the score
-        _gameScore.SetValue(0);
     }
 
     private void OnEnable()
     {
+        _level.OnValueChanged.AddListener(UpdateSpeedByLevel);
         _playField.OnLineCleared.AddListener(UpdateScore);
     }
 
     private void OnDisable()
     {
+        _level.OnValueChanged.RemoveListener(UpdateSpeedByLevel);
         _playField.OnLineCleared.RemoveListener(UpdateScore);
     }
 
@@ -110,21 +125,76 @@ public class GameController : MonoBehaviour
 
             if (rb != null)
                 rb.AddExplosionForce(500, explosionPos, 10f, 100);
-                
         }
         _particles.Play();
         OnGameOver.Invoke();
         _gameOver = true;
+        _speed.Reset();
     }
 
     private void UpdateScore(int rowsCleared)
     {
-        int newScore = (rowsCleared + (rowsCleared - 1)) * _baseScore;
+        _totalRowsCleared += rowsCleared;
+        _rowsCleraedThisLevel += rowsCleared;
+        int newScore = (rowsCleared + (rowsCleared - 1)) * _baseScore * _level.Value;
         _gameScore.AddToValue(newScore);
+
+        if (_rowsCleraedThisLevel >= 10)
+        {
+            _rowsCleraedThisLevel = 0;
+            _level.AddToValue(1);
+        }
     }
 
     public void UnPause()
     {
         _lastSpawnedTetromino.enabled = true;
+    }
+
+    public void Quit()
+    {
+        ResetValues();
+        SceneManager.LoadScene("Main Menu");
+    }
+
+    private void OnApplicationQuit()
+    {
+        ResetValues();
+    }
+
+    public void Restart()
+    {
+        ResetValues();
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+    }
+
+    private void ResetValues()
+    {
+        _speed.Reset();
+        _level.SetValue(1);
+        _totalRowsCleared = 0;
+        _gameScore.SetValue(0);
+    }
+
+    public void UpdateSpeedByLevel(int newLevel)
+    {
+        float newSpeed = NewSpeedLookup(newLevel);
+        _speed.SetValue(newSpeed);
+    }
+
+    private float NewSpeedLookup(int level)
+    {
+        float newSpeed = _levelSpeeds[0];
+        for(int i = 0; i < _levelBreakPoints.Length; i++)
+        {
+            if(level - 1 <= _levelBreakPoints[i])
+            {
+                newSpeed = _levelSpeeds[i];
+                break;
+            }
+        }
+
+        return newSpeed;
     }
 }

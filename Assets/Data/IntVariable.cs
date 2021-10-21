@@ -30,4 +30,9 @@ public class IntVariable : ScriptableObject
         _value = newValue;
         OnValueChanged.Invoke(_value);
     }
+
+    private void OnValidate()
+    {
+        OnValueChanged.Invoke(_value);
+    }
 }

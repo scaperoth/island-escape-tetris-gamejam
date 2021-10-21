@@ -504,7 +504,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 591186169}
-  m_LocalRotation: {x: 0.11040704, y: -0.36744833, z: 0.043980956, w: 0.92241955}
+  m_LocalRotation: {x: 0.11040701, y: -0.36744833, z: 0.04398093, w: 0.9224195}
   m_LocalPosition: {x: 27.89649, y: 13.8, z: -30.64428}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -652,8 +652,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284822875
-  m_fontColor: {r: 0.35692874, g: 0.20745817, b: 0.3962264, a: 1}
+    rgba: 4283585106
+  m_fontColor: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1600,7 +1600,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1409213630}
-  m_LocalRotation: {x: 0.11040704, y: -0.36744833, z: 0.043980956, w: 0.92241955}
+  m_LocalRotation: {x: 0.11040701, y: -0.36744833, z: 0.04398093, w: 0.9224195}
   m_LocalPosition: {x: 27.89649, y: 13.8, z: -30.64428}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []

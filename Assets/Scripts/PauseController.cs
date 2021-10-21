@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 public class PauseController : MonoBehaviour
 {
     public UnityEvent OnUnpause;
+    public UnityEvent OnRestart;
+    public UnityEvent OnQuit;
 
     private void Update()
     {
@@ -20,13 +22,12 @@ public class PauseController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            SceneManager.LoadScene("Main Menu");
+            OnQuit.Invoke();
         }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Scene scene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(scene.name);
+            OnRestart.Invoke();
         }
     }
 }
